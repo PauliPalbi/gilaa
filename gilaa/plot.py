@@ -12,9 +12,9 @@ class plot(object):
     
     '''
     def __init__(self, data):
-        self.data=data.set_index('star_id')
+        self.data=data
 
-    def plot_abundance(starname,elements=None,save=False,savename=False):
+    def plot_abundance(self,starname,elements,save=False,savename=False):
         '''
         Plots the elemental abundances of a given star as a bar plot.
 
@@ -32,10 +32,45 @@ class plot(object):
             matplotlib.pyplot.Figure: the orbit plot if input is valid, ``None`` otherwise 
     
         '''
+        print("Starname: {}".format(starname))
+        print("Elements: {}".format(elements))
+
+        #create a list of the column labels corresponding to the desired labels
         
-        return None
-        #deets=data[starname]
+        labels=[]
+        abundances={}
+
+        for i in elements:
+            print(i)
+            label=i.lower()+'_fe'
+
+            assert (label in star.data.columns), "{} not found in data file".format(label)
+            labels.append(label)
+        
+
+        #get abundance values for the star:
+        
+        self.data.set_index('star_id',inplace=True)
+        star_data=self.data.loc[starname]
+        abundances={}
+        for label in labels:
+            abundances[label]=star_data[label]
+        
+        # sort alphabetically
+        alph_keys=sorted(abundances.keys(), key=lambda x:x.lower())
+        values=[abundances[i] for i in alph_keys]
+
+        plt.bar(alph_keys,values,color='orange')
+        plt.xlabel("[Element/Fe]")
+        plt.ylabel("Abundance")
+        plt.title("Chemical Abundances of 2MASS {}".format(starname))
+        plt.savefig('{}.png'.format(savename))
+
+        return abundances
         
 if __name__ == "__main__":
-    star=plot(pd.read_csv('./data/ngc632.csv'))
-    print(star.data[0])
+    data=pd.read_csv('../data/ngc632.csv')
+    star=plot(data)
+    starname=star.data['star_id'][0]
+
+    print(star.plot_abundance(starname,['o','ca','ba','c','ti','mg'],save=True,savename='test_abundances'))
