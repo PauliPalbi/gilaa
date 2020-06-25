@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('./../../code'))
 
 
 # -- Project information -----------------------------------------------------
@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath('.'))
 project = 'Gilaa'
 copyright = '2020, Vighnesh Nagpal, Rodrigo Ferrer Chávez'
 author = 'Vighnesh Nagpal, Rodrigo Ferrer Chávez'
-master_dox='index'
+master_doc='index'
 
 # The full version, including alpha/beta/rc tags
 release = '1.00'
@@ -31,7 +31,7 @@ release = '1.00'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions = ['sphinx.ext.autodoc','sphinx.ext.napoleon'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
