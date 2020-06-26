@@ -95,7 +95,7 @@ class plot(object):
         ax.set_ylabel("Abundance")
         #ax.title("Chemical Abundances of 2MASS {}".format(starname))
         fig.savefig('{}.png'.format(savename))
-        fig.show()
+        # fig.show()
 
         return abundances
 
@@ -149,7 +149,7 @@ class plot(object):
             for star_id in star_ids:
                 plt.errorbar(x_marks, id_var_err[star_id][0], yerr=id_var_err[star_id][1], label=star_id, marker="o")
             plt.xticks(x_marks, with_uncer)
-            plt.show()
+            #plt.show()
             if save:
                 plt.savefig('{}.png'.format(savename))
 
@@ -158,10 +158,17 @@ class plot(object):
 if __name__ == "__main__":
     data=pd.read_csv("../data/ngc632.csv")
     star=plot(data)
-    starname=star.data['star_id'][0:2]
+    starname=star.data['star_id'][0:3]
 
-    print(star.plot_abundance(starname,['o','ca','ba','c','ti','mg'],save=True,savename='test_abundances_2')) 
+    star.plot_abundance(starname,['o','ca','ba','c','ti','mg'],save=True,savename='../plots/test_abundances')
 
+
+    variables = ["al_fe", "ba_fe", "eu_fe"]
+    stars= ["13321909-7822135", "13322043-3651561"]
+    # errorPlot(df,variables, stars))
+
+    thou=plot("../data/top1000.csv")
+    thou.errorPlot(variables,stars,save=True,savename="../plots/test_error")
 
 
 
