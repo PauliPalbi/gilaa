@@ -8,24 +8,41 @@ Getting the data
 
 ``gilaa`` is a package for processing data from the GALAH survey, which means that to begin using it you need an initial dataset.
 Go to the `Data Central TAP Service site <https://datacentral.org.au/vo/tap>`_ and query for some data you are interested in.
-If you are not familiar with query searching, you can go to this `sample queries stie <https://docs.datacentral.org.au/galah/sample-queries/sample-queries-galah-dr2/>`_ to get started.
+If you are not familiar with query searching, you can go to this `sample queries site <https://docs.datacentral.org.au/galah/sample-queries/sample-queries-galah-dr2/>`_ to get started.
 Download the data preferably as a .csv file (if you download the file and you can't open it directly, try openning it with a regular text editor and from there save it as a .csv file).
+
+Keeping reliable abundances
++++++++++++++++++++++++++++
+
+Once you have your data saved, you can do some simple filtering. In the `sample queries site <https://docs.datacentral.org.au/galah/sample-queries/sample-queries-galah-dr2/>`_
+emphasizes that some of the parameters might have too much uncertainty to be trustworthy. If you want to only keep
+the stars for which elemental abundances of a given element don't suggest untrustworthiness, you can do so with the ``reliability``
+module and the properly named ``keepReliableAbundances()`` method. For this you must pass in your data as a pandas DataFrame object
+and the one element symbol that you wish. In this example, we are using a .csv file named 'ngc632.csv'::
+
+.. code-block:: python
+
+        import pandas as pd
+        import gilaa 
+        data = pd.read_csv('ngc632.csv')
+        df = pd.DataFrame(data)
+        print(gilaa.keepReliableAbundances(df, "ti"))
+
+The function returns a list of star IDs for which the reported value of titanium abundance is reliable (according
+to the catalog itself).
 
 Basic plotting
 ++++++++++++++
 
-Once you have your data saved in some location, you must import the ``plot``module and then
+You can also make some basic plots with the data. For this, you must import the ``plot``module and then
  initialize a ``plot`` object taking the filename as an argument.
-In this example, we are using a .csv file named 'ngc632.csv':
 
 .. code-block:: python
 
         from gilaa import plot
         data = plot.plot('ngc632.csv')
 
-
-In this way you can interact with all the functions for handling data.
-For example, the function ``plot_abundance()`` allows you to (perhaps unsurprisingly) plot the abundance of certain chemical elements in stars.
+In this way you can interact with all the functions for plotting data. For example, the function ``plot_abundance()`` allows you to (perhaps unsurprisingly) plot the abundance of certain chemical elements in stars.
 The function takes two arguments: ``starnames``, which is a list of up to three star IDs that exist in the catalog (if you only wish to pass one star, you have to do it as a one-element string),
 and ``elements``, which is a list of elements whose abundance with reference to iron you want to plot (each element of the list must be a string
 of the chemical symbol of the element, i.e. input "C" or "c", not "carbon"). We will take the star IDs from the .csv file:
