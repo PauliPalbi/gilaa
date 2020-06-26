@@ -84,6 +84,6 @@ class plot(object):
 if __name__ == "__main__":
     data=pd.read_csv("testdata.csv")
     star=plot(data)
-    starname=star.data['star_id'][0:3]
+    starname=star.data['star_id'][0:2]
 
     print(star.plot_abundance(starname,['o','ca','ba','c','ti','mg'],save=True,savename='test_abundances'))

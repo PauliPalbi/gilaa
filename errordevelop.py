@@ -23,7 +23,7 @@ def errorPlot(df, variables, star_ids):
         for star_id in star_ids:
             index = df[df["star_id"] == star_id].index[0]
             id_var_err[star_id] = [[df[x][index] for x in with_uncer], [df["e_" + x][index] for x in with_uncer]]
-        fig = plt.figure()
+        plt.figure()
         x_marks = np.arange(len(with_uncer))
         for star_id in star_ids:
             plt.errorbar(x_marks, id_var_err[star_id][0], yerr=id_var_err[star_id][1], label=star_id, marker="o")
