@@ -14,13 +14,14 @@ Download the data preferably as a .csv file (if you download the file and you ca
 Basic plotting
 ++++++++++++++
 
-Once you have your data saved in some location, you can initialize a ``plot`` object taking the filename as an argument.
+Once you have your data saved in some location, you must import the ``plot``module and then
+ initialize a ``plot`` object taking the filename as an argument.
 In this example, we are using a .csv file named 'ngc632.csv':
 
 .. code-block:: python
 
-        import gilaa as gl
-        data = gl.plot('ngc632.csv')
+        from gilaa import plot
+        data = plot.plot('ngc632.csv')
 
 
 In this way you can interact with all the functions for handling data.
@@ -31,10 +32,9 @@ of the chemical symbol of the element, i.e. input "C" or "c", not "carbon"). We 
 
 .. code-block:: python
 
-        from gilaa import plot
         starnames=['00490142-7054201', '00582635-7038546']
         elements=['ti', 'li', 'al']
-        data.plot.plot_abundance(starnames, elements)
+        data.plot_abundance(starnames, elements)
 
 The function will produce a (rather beautiful) plot of the star abundances, and it will return a list of 
 dictionaries, containing the elemental abundances (values) for each star (key).
@@ -50,7 +50,7 @@ know of those which don't. For example:
 
         variables=['ba_fe', 'rv_synt', 'al_fe']
         star_ids=['00490142-7054201', '00582635-7038546']
-        data.plot.errorPlot(variables, star_ids)
+        data.errorPlot(variables, star_ids)
 
 Again, the function will generate a plot with the associated error bars, and will return a dictionary with
 the data corresponding to each star.
