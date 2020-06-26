@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import astropy
 import pandas as pd
 import gilaa.plot as plot
-
+# .. automodule:: gilaa.plot
+#    :members:
 def example():
+    
     '''
     This function just shows a simple use case for the code.
     Saves the plots made to /data/
