@@ -12,3 +12,4 @@ Contents
 
    plot
    example
+   Tutorial

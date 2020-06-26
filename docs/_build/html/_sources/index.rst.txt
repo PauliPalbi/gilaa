@@ -1,20 +1,15 @@
-.. Gilaa documentation master file, created by
-   sphinx-quickstart on Thu Jun 25 11:40:01 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to Gilaa's documentation!
 =================================
 
+Gilaa is a package that, as of now, works with data from the GALAH survey and plots information 
+regarding their chemical abundances.
+
+
+Contents
+==================
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   plot
+   example
+   Tutorial
