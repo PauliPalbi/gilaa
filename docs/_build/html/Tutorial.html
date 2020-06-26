@@ -35,7 +35,8 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Example use of Gilaa’s plotting functionality" href="example.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,9 +81,14 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="plot.html">More about plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example use of Gilaa’s plotting functionality</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-the-data">Getting the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-plotting">Basic plotting</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -153,9 +159,44 @@
 <div class="section" id="getting-the-data">
 <h2>Getting the data<a class="headerlink" href="#getting-the-data" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">gilaa</span></code> is a package for processing data from the GALAH survey, which means that to begin using it you need an initial dataset.
-Go to the <cite>Data Central TAP Service site &lt;https://datacentral.org.au/vo/tap&gt;</cite> and query for some data you are interested in.
-If you are not familiar with query searching, you can go to this <cite>sample queries stie &lt;https://docs.datacentral.org.au/galah/sample-queries/sample-queries-galah-dr2/&gt;</cite> to get started.
+Go to the <a class="reference external" href="https://datacentral.org.au/vo/tap">Data Central TAP Service site</a> and query for some data you are interested in.
+If you are not familiar with query searching, you can go to this <a class="reference external" href="https://docs.datacentral.org.au/galah/sample-queries/sample-queries-galah-dr2/">sample queries stie</a> to get started.
 Download the data preferably as a .csv file (if you download the file and you can’t open it directly, try openning it with a regular text editor and from there save it as a .csv file).</p>
+</div>
+<div class="section" id="basic-plotting">
+<h2>Basic plotting<a class="headerlink" href="#basic-plotting" title="Permalink to this headline">¶</a></h2>
+<p>Once you have your data saved in some location, you can initialize a <code class="docutils literal notranslate"><span class="pre">plot</span></code> object taking the filename as an argument.
+In this example, we are using a .csv file named ‘ngc632.csv’:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gilaa</span> <span class="k">as</span> <span class="nn">gl</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;ngc632.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this way you can interact with all the functions for handling data.
+For example, the function <code class="docutils literal notranslate"><span class="pre">plot_abundance()</span></code> allows you to (perhaps unsurprisingly) plot the abundance of certain chemical elements in stars.
+The function takes two arguments: <code class="docutils literal notranslate"><span class="pre">starnames</span></code>, which is a list of up to three star IDs that exist in the catalog (if you only wish to pass one star, you have to do it as a one-element string),
+and <code class="docutils literal notranslate"><span class="pre">elements</span></code>, which is a list of elements whose abundance with reference to iron you want to plot (each element of the list must be a string
+of the chemical symbol of the element, i.e. input “C” or “c”, not “carbon”). We will take the star IDs from the .csv file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gilaa</span> <span class="kn">import</span> <span class="n">plot</span>
+<span class="n">starnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;00490142-7054201&#39;</span><span class="p">,</span> <span class="s1">&#39;00582635-7038546&#39;</span><span class="p">]</span>
+<span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ti&#39;</span><span class="p">,</span> <span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="s1">&#39;al&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">plot_abundance</span><span class="p">(</span><span class="n">starnames</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function will produce a (rather beautiful) plot of the star abundances, and it will return a list of
+dictionaries, containing the elemental abundances (values) for each star (key).</p>
+<p>You can also plot the variables with their associated uncertainties (if they exist in the catalog).
+To accomplish this, use the <code class="docutils literal notranslate"><span class="pre">errorPlot()</span></code> function, which takes two arguments: <code class="docutils literal notranslate"><span class="pre">variables</span></code>, which is a list
+of all the variables you want to plot from the catalog, and <code class="docutils literal notranslate"><span class="pre">star_ids</span></code>. For <code class="docutils literal notranslate"><span class="pre">variables</span></code>, the input format must
+be the one used in the table columns, which you can consult <a class="reference external" href="https://docs.datacentral.org.au/galah/table-schema/dr2-table-schema/">here</a>.
+The function will plot those variables that have an associated uncertainty in the catalog, and will let you
+know of those which don’t. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ba_fe&#39;</span><span class="p">,</span> <span class="s1">&#39;rv_synt&#39;</span><span class="p">,</span> <span class="s1">&#39;al_fe&#39;</span><span class="p">]</span>
+<span class="n">star_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;00490142-7054201&#39;</span><span class="p">,</span> <span class="s1">&#39;00582635-7038546&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">errorPlot</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">star_ids</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Again, the function will generate a plot with the associated error bars, and will return a dictionary with
+the data corresponding to each star.</p>
 </div>
 </div>
 
@@ -164,6 +205,13 @@ Download the data preferably as a .csv file (if you download the file and you ca
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="example.html" class="btn btn-neutral float-left" title="Example use of Gilaa’s plotting functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
