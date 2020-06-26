@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 import astropy
 import pandas as pd
 import gilaa.plot as plot
-# .. automodule:: gilaa.plot
-#    :members:
+
 def example():
     
     '''
