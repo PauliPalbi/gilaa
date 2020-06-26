@@ -26,4 +26,4 @@ def example():
     thou=plot("../data/top1000.csv")
     thou.errorPlot(variables,stars,save=True,savename="../plots/test_error")
 
-    print(Done!)
+    print("Done!")
