@@ -153,7 +153,99 @@
             
   <div class="section" id="more-about-plotting">
 <span id="plot"></span><h1>More about plotting<a class="headerlink" href="#more-about-plotting" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-gilaa"></span></div>
+<span class="target" id="module-gilaa"></span><span class="target" id="module-gilaa.plot"></span><dl class="py class">
+<dt id="gilaa.plot.plot">
+<em class="property">class </em><code class="sig-prename descclassname">gilaa.plot.</code><code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gilaa.plot.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class to do all the plotting from.
+:param data: a dataframe containing the data desired to be</p>
+<blockquote>
+<div><p>plotted.</p>
+</div></blockquote>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt id="gilaa.plot.plot.errorPlot">
+<code class="sig-name descname">errorPlot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">variables</span></em>, <em class="sig-param"><span class="n">star_ids</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">savename</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gilaa.plot.plot.errorPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>PLots error bars.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variables</strong> (<em>list</em>) – A list of strings represented the stellar parameters
+the user is interested in</p></li>
+<li><p><strong>star_ids</strong> (<em>list</em>) – A list of star-id’s the user wishes to generate the
+plot for</p></li>
+<li><p><strong>save</strong> (<em>Boolean</em>) – Indicates whether the created plot should be
+saved or not. The default setting is False.</p></li>
+<li><p><strong>savename</strong> (<em>str</em>) – If save is set to True, a savename must be
+provided.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary containing information about the</dt><dd><p>errors associated with each of the parameters
+in variables.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>id_var_err (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gilaa.plot.plot.plot_abundance">
+<code class="sig-name descname">plot_abundance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">starname</span></em>, <em class="sig-param"><span class="n">elements</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">savename</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gilaa.plot.plot.plot_abundance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the elemental abundances of a given star as a bar plot.
+:param starname: The star-id’s of the star for which the user wishes</p>
+<blockquote>
+<div><p>to plot abundances</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<em>list</em>) – A list signifying which elemental abundances
+the user wishes to plot. Must be in the format
+of the galah datafiles</p></li>
+<li><p><strong>save</strong> (<em>Boolean</em>) – Indicates whether the created plot should be
+saved or not. The default setting is False.</p></li>
+<li><p><strong>savename</strong> (<em>str</em>) – If save is set to True, a savename must be
+provided.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A list of dictionaries contaning the abundances</dt><dd><p>for each star.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>abundances (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="gilaa.plot.read_input">
+<code class="sig-prename descclassname">gilaa.plot.</code><code class="sig-name descname">read_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gilaa.plot.read_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes in a csv file containing the data desired to analysed and
+returns a pandas dataframe containing the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The path to the file</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Output:</dt><dd><p>data (DataFrame): The data in the form of a pandas Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 
 
            </div>
