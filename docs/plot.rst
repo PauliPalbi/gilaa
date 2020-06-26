@@ -1,6 +1,6 @@
 .. _plot:
 
-Make some interesting plots
+More about plotting
 =========
 .. module:: gilaa
 .. automodule:: gilaa.plot
