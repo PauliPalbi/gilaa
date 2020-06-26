@@ -22,15 +22,32 @@ In this example, we are using a .csv file named 'ngc632.csv':
 
 In this way you can interact with all the functions for handling data.
 For example, the function ``plot_abundance()`` allows you to (perhaps unsurprisingly) plot the abundance of certain chemical elements in stars.
-The function takes two arguments: ``starnames```, which is a list of up to three star IDs that exist in the catalog (if you only wish to pass one star, you have to do it as a one-element string),
+The function takes two arguments: ``starnames``, which is a list of up to three star IDs that exist in the catalog (if you only wish to pass one star, you have to do it as a one-element string),
 and ``elements``, which is a list of elements whose abundance with reference to iron you want to plot (each element of the list must be a string
-of the chemical symbol of the element, i.e. input "C" or "c", not "carbon"). We will take some data from the .csv file:
+of the chemical symbol of the element, i.e. input "C" or "c", not "carbon"). We will take the star IDs from the .csv file:
 
 .. code-block:: python
 
+        from gilaa import plot
         starnames=['00490142-7054201', '00582635-7038546']
         elements=['ti', 'li', 'al']
-        data.plot_abundance(starnames, elements)
+        data.plot.plot_abundance(starnames, elements)
 
 The function will produce a (rather beautiful) plot of the star abundances, and it will return a list of 
 dictionaries, containing the elemental abundances (values) for each star (key).
+
+You can also plot the variables with their associated uncertainties (if they exist in the catalog). 
+To accomplish this, use the ``errorPlot()`` function, which takes two arguments: ``variables``, which is a list
+of all the variables you want to plot from the catalog, and ``star_ids``. For ``variables``, the input format must
+be the one used in the table columns, which you can consult `here <https://docs.datacentral.org.au/galah/table-schema/dr2-table-schema/>`_.
+The function will plot those variables that have an associated uncertainty in the catalog, and will let you
+know of those which don't. For example:
+
+.. code-block:: python
+
+        variables=['ba_fe', 'rv_synt', 'al_fe']
+        star_ids=['00490142-7054201', '00582635-7038546']
+        data.plot.errorPlot(variables, star_ids)
+
+Again, the function will generate a plot with the associated error bars, and will return a dictionary with
+the data corresponding to each star.
