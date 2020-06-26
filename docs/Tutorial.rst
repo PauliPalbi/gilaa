@@ -50,7 +50,7 @@ know of those which don't. For example:
 
         variables=['ba_fe', 'rv_synt', 'al_fe']
         star_ids=['00490142-7054201', '00582635-7038546']
-        data.errorPlot(variables, star_ids)
+        data.errorPlot(star_ids,variables)
 
 Again, the function will generate a plot with the associated error bars, and will return a dictionary with
 the data corresponding to each star.

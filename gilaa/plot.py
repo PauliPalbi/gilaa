@@ -18,6 +18,7 @@ def read_input(filename):
     return data
 
 
+
 class plot(object):
     '''
     A class to do all the plotting from.
@@ -101,15 +102,15 @@ class plot(object):
 
         return abundances
 
-    def errorPlot(self,variables, star_ids,save=False,savename=False):
+    def errorPlot(self,star_ids,variables,save=False,savename=False):
         '''
         PLots error bars.
 
         Args:
-            variables (list): A list of strings represented the stellar parameters
-                              the user is interested in 
             star_ids  (list): A list of star-id's the user wishes to generate the 
                               plot for
+            variables (list): A list of strings represented the stellar parameters
+                              the user is interested in 
             save (Boolean) : Indicates whether the created plot should be 
                              saved or not. The default setting is False.
             savename (str) : If save is set to True, a savename must be 
