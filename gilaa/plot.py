@@ -64,7 +64,7 @@ class plot(object):
             print(i)
             label=i.lower()+'_fe'
 
-            assert (label in star.data.columns), "{} not found in data file".format(label)
+            assert (label in self.data.columns), "{} not found in data file".format(label)
             labels.append(label)
 
 
